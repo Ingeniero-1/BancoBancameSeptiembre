@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Buen Dia Terraplanistas!</title>
+    <style>
+        body,
+        html {
+            padding: 0px !important;
+            margin: 0px !important;
+            font-family: 'Inconsolata', monospace;
+        }
+
+        button {
+            margin-bottom: 20px;
+            background-color: transparent;
+            border: yellow 3px solid;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: large;
+            color: yellow;
+            outline: none;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="position: absolute; right: 10px; top:10px;color:yellow;z-index:1;text-align: right;">
+        
+        <span id="saldo">Saldo aca</span>
+    
+    </h1>
+        
+    <h1  style="position: absolute; left: 10px; top:10px;color:yellow;z-index:1;text-align: left;">
+        <span id="name" style="text-transform:uppercase"></span><br>
+        <span id="hora">hora aca</span>
+            
+    </h1>
+            
+            
+    <div
+        style="position:absolute;background-color:rgb(1, 1, 141);height: 100% !important; width:100%;display: flex; text-align: center; justify-content: center; align-items:center; align-content: center;">
+
+        <div style="flex: 1;display: flex;flex-direction: column;">
+            <button onclick="lastMovements()">ULTIMOS MOVIMIENTOS</button>
+            <button onclick="depositos()">DEPOSITOS</button>
+        </div>
+        <div style="flex: 1;display: flex;flex-direction: column;">
+            <button onclick="tranfer()">TRANSFERENCIAS</button>
+            <button onclick="tranfer()">BONOS</button>
+        </div>
+    </div>
+
+<script>
+        
+    var name = localStorage.getItem("name");
+    var saldo = localStorage.getItem("saldo");
+    var sex = localStorage.getItem("sex");
+
+
+    var date = new Date();
+    var hora = new Date().getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + " hs";
+    document.getElementById("hora").textContent = hora;
+    document.getElementById("saldo").textContent = "Su saldo en Pesos Argentinos es: $" + saldo;
+    
+    if (sex == "male") {
+    document.getElementById("name").textContent = "Bienvenido " + name;
+    } else if (sex == "female") {
+        document.getElementById("name").textContent = "Bienvenida " + name;
+    } else {
+        document.getElementById("name").textContent = "Buenos dias " + name;
+    }
+    
+</script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="UTF-8">
+
+	<title>Registro de Nuevo Usuario</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="Estilos.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+		<h1>Ingresa a tu cuenta!</h1>
+
+	    <!-- Forma de Ingreso con cuenta previamente creada-->
+    <div class="container">
+        <div class="form-group">
+          <label>Ingrese su Email</label>
+          <input id="email" type="text" class="form-control" placeholder="">
+        </div>
+
+        <div class="form-group">
+          <label>Contraseña</label>
+         <input id="password" type="password" class="form-control" placeholder="">
+        </div>
+
+	<button id="btn" class="btn btn-default">Entrar</button>
+<a href="index.html">
+   <button>Volver a la pagina principal</button>
+</a>
+        
+        
+       <script>
+        
+          $('#btn').click(function(){
+            var email = $('#email').val();        
+            var password = $('#password').val();
+            console.log("Corrio bien!");
+
+var settings = {
+  "url": "http://localhost:8080/BancoBancame/rest/clientes/login",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },  "data": JSON.stringify({
+      "password":password,
+      "email":email
+  }),
+  
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+  if (response.length<=0){
+      alert("Error al ingresar")
+  }
+  else {
+      alert("Contraseña aceptada!");
+      localStorage.setItem("name", response[0].nombre);
+      localStorage.setItem("id", response[0].id);
+      localStorage.setItem("direccion", response[0].direccion);
+      localStorage.setItem("saldo", response[0].saldo);
+      localStorage.setItem("sex", response[0].sex);
+      
+      location.href="CuentaDeUsuario.html"
+  }
+});
+                });
+           </script>
+
+</body>
+</html>
